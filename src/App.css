@@ -3,19 +3,15 @@ body {
 }
 .App {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
-
-
 }
 
 .wrapper {
-  /*display: flex;*/
-  flex-direction: column;
   width: 400px;
   height: 300px;
   border: #4495da solid 2px;
-  margin: 10px 10px 10px 10px;
+  margin: 0;
   padding: 25px;
 
 }
@@ -45,9 +41,26 @@ button {
   background-color: #5ad1fd;
   margin: 20px;
   border: #4495da solid 2px;
+  border-radius: 10%;
   font-size: 20px;
 }
 
 .limit {
   color: red;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  border: #4495da solid 2px;
+  background-color: #1f4b60;
+}
+
+.inputSet {
+  margin: 20px;
+  border: 1px solid white;
+  height: 55px;
 }
