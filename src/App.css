@@ -48,6 +48,11 @@ button {
 .limit {
   color: red;
 }
+.incorrectValue {
+  color: red;
+  font-size: 18px;
+  padding-left: 50%;
+}
 
 .settings {
   display: flex;
@@ -63,4 +68,7 @@ button {
   margin: 20px;
   border: 1px solid white;
   height: 55px;
+}
+.setError {
+  background: rgba(252, 114, 139, 0.61);
 }

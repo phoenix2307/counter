@@ -1,41 +1,51 @@
-import React, {useState} from "react";
+import React from "react";
 import '../App.css'
 
 
 type CounterType = {
-    increment: (currentValue: number, minValue: number, maxValue: number) => void
+    increment: (currentValue: number) => void
     reset: () => void
     currentValue: number
     minValue: number
     maxValue: number
-    settingCounter: (min: number, max: number) => void
+    errorHandling: {
+        incorrect: string,
+        colorMaxValue: string,
+        errorInput: string
+    }
     toggleSet: () => void
 }
-export const Counter = (props: CounterType) => {
+export const Counter = ({currentValue, minValue, maxValue, errorHandling, ...props}: CounterType) => {
+    let disabledBtnCount = false
+    let disabledBtnReset = false
 
-    let colorLimit = ''
-    let disabledCount = false
-    let disabledReset = false
 
-    if (props.currentValue === props.minValue) {
-        disabledReset = true
+    if (currentValue === minValue) {
+        disabledBtnReset = true
     }
-    if (props.currentValue === props.maxValue) {
-        disabledCount = true
-        colorLimit = 'limit'
+    if (currentValue === maxValue) {
+        disabledBtnCount = true
+        errorHandling.colorMaxValue = 'limit'
+    }
+    if (currentValue > maxValue) {
+        disabledBtnCount = true
+        disabledBtnReset = true
+        errorHandling.colorMaxValue = 'limit'
+        errorHandling.incorrect = 'Enter correct values'
     }
 
     return (
         <div className={'wrapper'}>
-            <div className={`table ${colorLimit}`}>{props.currentValue}</div>
+            <div className={errorHandling.incorrect ? `incorrectValue` : `table ${errorHandling.colorMaxValue}`}>
+                {errorHandling.incorrect ? errorHandling.incorrect: currentValue}</div>
             <div className={'buttons'}>
 
-                <button onClick={() => props.increment(props.currentValue, props.minValue, props.maxValue)}
-                        disabled={disabledCount}>Count
+                <button onClick={() => props.increment(currentValue)}
+                        disabled={disabledBtnCount}>Count
                 </button>
 
                 <button onClick={() => props.reset()}
-                        disabled={disabledReset}>Reset
+                        disabled={disabledBtnReset}>Reset
                 </button>
 
                 <button onClick={props.toggleSet}>SET</button>
@@ -43,39 +53,6 @@ export const Counter = (props: CounterType) => {
         </div>
     )
 }
-
-type SettingType = {
-    settingCounter: (min: number, max: number) => void
-}
-export const Setting = (props: SettingType) => {
-
-
-
-    return (
-        <div className={'wrapper'}>
-            <div className={`table`}> m</div>
-            <div className={'buttons'}>
-                {/*<button onClick={()=>props.settingCounter(minValue, maxValue)}>Apply</button>*/}
-            </div>
-
-        </div>
-    )
-}
-/*
-Сделать переключение между отображением двух окон:
------
-Если true отображать компоненту1, если false - компоненту2
-1. монитор с цифрой
-2. окно настроек
-Посмотреть как реализовано в Accordion
------
-3. add state for max and min values
-4. use my button's style from homework by Ignat
-5. create animation for show next window my Counter
-6. toggle activate - btn SET. Возможно сделать ее одной или две кнопкув двух компонентах, но которые обращаются к одному state и меняют его значение на противоположное
-
-
-*/
 
 
 

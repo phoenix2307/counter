@@ -1,47 +1,62 @@
 import React, {ChangeEvent, useState} from "react";
 import '../App.css'
+import {ErrorHandlingType} from "../App";
 
 type SettingsType = {
-    toggleSet: () => void
+    toggleSet: (startValue: number) => void
     settingCounter: (min: number, max: number) => void
+    errorHandling: ErrorHandlingType
 }
 
-export const SettingsCounter = (props: SettingsType) => {
+export const SettingsCounter = ({errorHandling, ...props}: SettingsType) => {
+    let disableBtnApply = false
 
-    let [minValue, setMinValue] = useState<number>(0)
-    let [maxValue, setMaxValue] = useState<number>(10)
     let [valueInputMin, setValueInputMin] = useState(0)
     let [valueInputMax, setValueInputMax] = useState(10)
 
     const onChangeHandlerMin = (e: ChangeEvent<HTMLInputElement>) => {
-        minValue = +e.currentTarget.value
-        setMinValue(minValue)
-        props.settingCounter(minValue, maxValue)
+        valueInputMin = +e.currentTarget.value
+        setValueInputMin(valueInputMin)
+        props.settingCounter(valueInputMin, valueInputMax)
     }
 
     const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) => {
-        maxValue = +e.currentTarget.value
-        setMaxValue(maxValue)
-        props.settingCounter(minValue, maxValue)
+        valueInputMax = +e.currentTarget.value
+        setValueInputMax(valueInputMax)
+        props.settingCounter(valueInputMin, valueInputMax)
+    }
+
+    if (valueInputMin === valueInputMax || valueInputMin > valueInputMax) {
+        errorHandling.errorInput = 'setError'
+        errorHandling.incorrect = 'incorrectValue'
+        errorHandling.errorMessage = 'Enter correct values'
+        disableBtnApply = true
     }
 
     return (
             <div className={'wrapper'}>
                 <div className={`settings`}>
                     <div className={'inputSet'}>
-                        <input value={minValue}
+                        {/*---------input1--------------*/}
+                        <input value={valueInputMin}
                                onChange={(e)=>onChangeHandlerMin(e)}
+                               className={errorHandling.errorInput}
                         /> min value
                     </div>
+                    <div className={errorHandling.incorrect }>{errorHandling.errorMessage}</div>
                     <div className={'inputSet'}>
-                        <input value={maxValue}
+                        {/*---------input2--------------*/}
+                        <input value={valueInputMax}
                                onChange={(e)=>onChangeHandlerMax(e)}
+                               className={errorHandling.errorInput}
                         /> max value
                     </div>
 
                 </div>
                 <div className={'buttons'}>
-                    <button onClick={props.toggleSet}>Apply</button>
+                    <button onClick={()=>props.toggleSet(valueInputMin)}
+                    disabled={disableBtnApply}
+                    >Apply</button>
                 </div>
 
             </div>

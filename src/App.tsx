@@ -3,25 +3,38 @@ import './App.css';
 import {Counter} from "./components/Counter";
 import {SettingsCounter} from "./components/SettingsCounter";
 
+export type ErrorHandlingType = {
+    incorrect: string
+    colorMaxValue: string
+    errorInput: string
+    errorMessage: string
+}
 
 function App() {
-    let minValue = 0
-    let maxValue = 7
 
     /*------------state---------------*/
-    const [showSetting, setShowSetting] = useState<boolean>(false)
+    let [minValue, setMinValue] = useState<number>(0)
+    let [maxValue, setMaxValue] = useState<number>(10)
+    const [showSetting, setShowSetting] = useState<boolean>(true)
     const [currentValue, setCurrentValue] = useState<number>(minValue)
-    // let [minValue, setMinValue] = useState(0)
-    // let [maxValue, setMaxValue] = useState(0)
 
+    const errorHandling: ErrorHandlingType = {
+        incorrect: '',
+        colorMaxValue: '',
+        errorInput: '',
+        errorMessage: ''
+    }
 
     /*------------action-------------*/
     const settingCounter = (min: number, max: number) => {
-        minValue = min
-        maxValue = max
+        setMinValue(min) // localStorage.getItem(key)
+        setMaxValue(max) //localStorage.getItem(key)
     }
 
-    const increment = (currentValue: number, minValue: number, maxValue: number): number => {
+    const increment = (currentValue: number): number => {
+        if (currentValue === maxValue || currentValue > maxValue) {
+
+        }
         if (currentValue < maxValue) {
             currentValue++
             setCurrentValue(currentValue)
@@ -29,37 +42,36 @@ function App() {
         return currentValue
     }
     const reset = () => {
-        return setCurrentValue(0)
+        return setCurrentValue(minValue)
     }
+    const toggleSet = (startValue?: number) => {
+        if (startValue) {
+            setCurrentValue(startValue)
+            setShowSetting(!showSetting)
+        } else {
+            setShowSetting(!showSetting)
+        }
 
-    const toggleSet = () => {
-        setShowSetting(!showSetting)
     }
 
     return (
         <div className="App">
-            <button onClick={() => setShowSetting(!showSetting)}>change</button>
             {
-                !showSetting
-                    ? <Counter increment={increment}
+                showSetting
+                    ? <SettingsCounter
+                        toggleSet={toggleSet}
+                        settingCounter={settingCounter}
+                        errorHandling={errorHandling}
+                    />
+                    : <Counter increment={increment}
                                currentValue={currentValue}
                                minValue={minValue}
                                maxValue={maxValue}
-                               settingCounter={settingCounter}
+                               errorHandling={errorHandling}
                                reset={reset}
                                toggleSet={toggleSet}/>
-                    : <SettingsCounter
-                        toggleSet={toggleSet}
-                        settingCounter={settingCounter}
-                    />
             }
-            {/*<Counter increment={increment}
-                     currentValue={currentValue}
-                     minValue={minValue}
-                     maxValue={maxValue}
-                     settingCounter={settingCounter}
-                     reset={reset}/>
-            <SettingsCounter/>*/}
+
         </div>
     );
 }
