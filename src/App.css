@@ -1,74 +1,86 @@
 body {
-  background-color: #282c34;
+    background-color: #282c34;
 }
+
 .App {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .wrapper {
-  width: 400px;
-  height: 300px;
-  border: #4495da solid 2px;
-  margin: 0;
-  padding: 25px;
-
+    width: 400px;
+    height: 300px;
+    border: #4495da solid 2px;
+    margin: 0;
+    padding: 25px;
 }
 
 .table {
-  justify-content: center;
-  width: 400px;
-  height: 200px;
-  border: #4495da solid 2px;
-  background-color: #1f4b60;
-  text-align: center;
-  color: white;
-  font-size: 135px;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    border: #4495da solid 2px;
+    background-color: #1f4b60;
+    text-align: center;
+    color: white;
+    font-size: 135px;
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-around;
-  width: 400px;
-  height: 87px;
-  border: #4495da solid 2px;
-  margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    height: 87px;
+    border: #4495da solid 2px;
+    margin-top: 20px;
 }
 
 button {
-  width: 100px;
-  background-color: #5ad1fd;
-  margin: 20px;
-  border: #4495da solid 2px;
-  border-radius: 10%;
-  font-size: 20px;
+    width: 100px;
+    background-color: #5ad1fd;
+    margin: 20px;
+    border: #4495da solid 2px;
+    border-radius: 10%;
+    font-size: 20px;
 }
 
 .limit {
-  color: red;
+    color: red;
 }
+
 .incorrectValue {
-  color: red;
-  font-size: 18px;
-  padding-left: 50%;
+    color: red;
+    font-size: 18px;
+    padding-left: 50%;
 }
 
 .settings {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 400px;
-  height: 200px;
-  border: #4495da solid 2px;
-  background-color: #1f4b60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    border: #4495da solid 2px;
+    background-color: #1f4b60;
 }
 
 .inputSet {
-  margin: 20px;
-  border: 1px solid white;
-  height: 55px;
+    padding: 4%;
+    margin: 5%;
+    border: 1px solid #8aa1ff;
+    height: 55px;
+    font-size: 18px;
+    color: #98deff;
 }
+
+input {
+    height: 25px;
+    margin-right: 50px;
+    font-size: 14px;
+    background-color: #5ad1fd;
+}
+
 .setError {
-  background: rgba(252, 114, 139, 0.61);
+    background: rgba(252, 114, 139, 0.61);
 }
