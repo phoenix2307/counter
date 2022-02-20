@@ -45,7 +45,7 @@ export const SettingsCounter = ({errorHandling, ...props}: SettingsType) => {
                 <div className={'inputSet'}>
                     {/*---------input minimum--------------*/}
                     <input
-                        value={valueInputMin}
+                        value={props.minValue}
                         onChange={onChangeHandlerMin}
                         className={errorHandling.errorInput}
                     /> min value
@@ -54,7 +54,7 @@ export const SettingsCounter = ({errorHandling, ...props}: SettingsType) => {
                 <div className={'inputSet'}>
                     {/*---------input maximum--------------*/}
                     <input
-                        value={valueInputMax}
+                        value={props.maxValue}
                         onChange={onChangeHandlerMax}
                         className={errorHandling.errorInput}
                     /> max value

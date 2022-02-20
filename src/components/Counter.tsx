@@ -35,8 +35,6 @@ export const Counter = ({currentValue, minValue, maxValue, errorHandling, ...pro
 
     return (
         <div className={'wrapper'}>
-            {/*<div className={errorHandling.incorrect ? `incorrectValue` : `table ${errorHandling.colorMaxValue}`}>*/}
-            {/*    {errorHandling.incorrect ? errorHandling.incorrect: currentValue}</div>*/}
             <div className={errorHandling.colorMaxValue ? `table ${errorHandling.colorMaxValue}`: `table`}>
                 {errorHandling.incorrect ? errorHandling.incorrect: currentValue}</div>
 

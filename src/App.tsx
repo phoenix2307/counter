@@ -12,11 +12,33 @@ export type ErrorHandlingType = {
 
 function App() {
 
-    /*------------state--------------------------------------------------*/
-
+    /*----------------------------state------------------------------------------*/
 
     let [minValue, setMinValue] = useState<number>(0)
     let [maxValue, setMaxValue] = useState<number>(10)
+
+    useEffect(() => {
+        let minValueFromLocalStorage = localStorage.getItem('minimum')
+        if (minValueFromLocalStorage) {
+            let newMinValue = JSON.parse(minValueFromLocalStorage)
+            setMinValue(newMinValue)
+        }
+
+        let maxValueFromLocalStorage = localStorage.getItem('maximum')
+        if (maxValueFromLocalStorage) {
+            let newMaxValue = JSON.parse(maxValueFromLocalStorage)
+            setMaxValue(newMaxValue)
+        }
+
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('minimum', JSON.stringify(minValue))
+    }, [minValue])
+
+    useEffect(() => {
+        localStorage.setItem('maximum', JSON.stringify(maxValue))
+    }, [maxValue])
 
 
     const [showSetting, setShowSetting] = useState<boolean>(true)
@@ -29,7 +51,7 @@ function App() {
         errorMessage: ''
     }
 
-    /*------------action----------------------------------------------*/
+    /*----------------------------action----------------------------------------*/
     const settingCounter = (min: number, max: number) => {
         setMinValue(min)
         setMaxValue(max)
@@ -51,7 +73,7 @@ function App() {
         }
 
     }
-
+    /*-------------------------------JSX----------------------------------------*/
     return (
         <div className="App">
             {
