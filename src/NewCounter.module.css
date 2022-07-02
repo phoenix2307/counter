@@ -1,0 +1,106 @@
+body {
+    background-color: #282c34;
+}
+
+.AppStart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.child {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    border: 10px solid #fa3e3e75;
+    width: 400px;
+    height: 300px;
+    flex-direction: column;
+    color: white;
+}
+
+.displayStyle {
+    border: 1px solid #5ca7f8;
+    width: 366px;
+    height: 150px;
+    margin: 15px;
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    line-height: 120px;
+    background-color: #2196f3;
+}
+
+.limitCount {
+    border: 1px solid #5ca7f8;
+    width: 366px;
+    height: 150px;
+    margin: 15px;
+    color: #a2051d;
+    text-align: center;
+    font-size: 60px;
+    line-height: 120px;
+    background-color: #2196f3;
+}
+
+
+.buttomBlock {
+    width: 364px;
+    height: 80px;
+    border: 1px solid green;
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffc107;
+    align-items: center;
+}
+
+.buttonStyle {
+    width: 60px;
+    height: 25px;
+    border: 1px solid #000248;
+    background-color: #ff5722;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+    color: black;
+}
+
+.buttonNegativeStyle {
+    width: 60px;
+    height: 25px;
+    border: 1px solid  #FF5722FF;
+    background-color: #000248;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+    color:#FF5722FF;
+}
+
+.clickButtonStyle {
+    width: 60px;
+    height: 25px;
+    border: 1px solid #020583;
+    background-color: #ff2222;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.disabledBtn {
+    opacity: 0.5;
+}
+
+.focus {
+
+}

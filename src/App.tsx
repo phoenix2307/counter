@@ -14,9 +14,20 @@ function App() {
 
     /*----------------------------state------------------------------------------*/
 
+
     let [minValue, setMinValue] = useState<number>(0)
     let [maxValue, setMaxValue] = useState<number>(10)
+    const [showSetting, setShowSetting] = useState<boolean>(true)
+    const [currentValue, setCurrentValue] = useState<number>(minValue)
 
+    const errorHandling: ErrorHandlingType = {
+        incorrect: '',
+        colorMaxValue: '',
+        errorInput: '',
+        errorMessage: ''
+    }
+
+    // получить единожды данные в state из local storage
     useEffect(() => {
         let minValueFromLocalStorage = localStorage.getItem('minimum')
         if (minValueFromLocalStorage) {
@@ -32,6 +43,7 @@ function App() {
 
     }, [])
 
+   // вызывать каждый раз useEffect при изменении зависимостей
     useEffect(() => {
         localStorage.setItem('minimum', JSON.stringify(minValue))
     }, [minValue])
@@ -39,17 +51,6 @@ function App() {
     useEffect(() => {
         localStorage.setItem('maximum', JSON.stringify(maxValue))
     }, [maxValue])
-
-
-    const [showSetting, setShowSetting] = useState<boolean>(true)
-    const [currentValue, setCurrentValue] = useState<number>(minValue)
-
-    const errorHandling: ErrorHandlingType = {
-        incorrect: '',
-        colorMaxValue: '',
-        errorInput: '',
-        errorMessage: ''
-    }
 
     /*----------------------------action----------------------------------------*/
     const settingCounter = (min: number, max: number) => {
